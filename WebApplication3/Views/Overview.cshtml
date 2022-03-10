@@ -1,0 +1,43 @@
+﻿@using System.Globalization
+@using EmptyASPNETCore.Models
+@model int
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int month = @Model;
+    var months = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+
+    if (month == -1)
+    {
+        for (int i = 0; i < months.Length; i++)
+        {
+            <a href="/Birthday/Overview/?month=@i">@months[i]</a>
+            <br/>
+        }
+    }
+    else
+    {
+        <h1>Månad: @months[month]</h1>
+        <a href="/Birthday/Overview">Länk tillbaks</a>
+
+        var birthdays = new List<Birthday>(){
+            new Birthday(new DateTime(1999, 04, 12), "Sebastian"), 
+            new Birthday(new DateTime(2000, 05, 10), "Oscar"), 
+            new Birthday(new DateTime(2000, 03, 10), "Carl"), 
+            new Birthday(new DateTime(1987, 03, 9), "Maria"), 
+            new Birthday(new DateTime(2010, 12, 30), "Simon")
+        };
+
+        foreach (var b in birthdays)
+        {
+            if (b.BirthDate.Month == (month + 1))
+            {
+                <p>@b.Name fyller år dag @b.BirthDate.Day denna månaden</p>
+            }
+        }
+
+    }
+}
+

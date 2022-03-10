@@ -9,9 +9,16 @@ namespace EmptyASPNETCore.Controllers
             return View("/Views/UpAndComing.cshtml");
         }
 
-        public IActionResult Overview(int month = 0)
+        //Ändrade logiken, för månad 0 är Januari
+        public IActionResult Overview(int month = -1)
         {
+            if (month >= 13 || month < -1)
+            {
+                return NotFound();
+            }
 
+            ViewData.Model = month;
+            return View("/Views/Overview.cshtml");
         }
     }
 }

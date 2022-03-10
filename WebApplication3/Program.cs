@@ -29,7 +29,7 @@ app.MapControllerRoute(
     pattern: "{controller=snippet}/{action=index}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Birthday}/{Overview}");
+    pattern: "{controller=Birthday}/{Overview}/{month}");
 //app.MapRazorPages();
 //Behövs inte för MVC eller Razor Pages
 /*var endpoint = () => "Hemlig endpoint";
