@@ -27,6 +27,9 @@ app.UseRouting();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=snippet}/{action=index}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Birthday}/{Overview}");
 //app.MapRazorPages();
 //Behövs inte för MVC eller Razor Pages
 /*var endpoint = () => "Hemlig endpoint";

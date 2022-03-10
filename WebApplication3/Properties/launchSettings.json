@@ -9,6 +9,7 @@
   },
   "profiles": {
     "WebApplication3": {
+      "launchUrl": "Birthday",
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

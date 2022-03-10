@@ -1,0 +1,84 @@
+﻿@using System.Net.WebSockets
+@using System.Security.Cryptography.X509Certificates
+@using EmptyASPNETCore.Models
+@using Microsoft.AspNetCore.Mvc.Formatters
+@{
+    var birthdays = new List<Birthday>(){
+        new Birthday(new DateTime(1999, 04, 12), "Sebastian"), 
+        new Birthday(new DateTime(2000, 05, 10), "Oscar"), 
+        new Birthday(new DateTime(2000, 03, 10), "Carl"), 
+        new Birthday(new DateTime(1987, 03, 9), "Maria"), 
+        new Birthday(new DateTime(2010, 12, 30), "Simon")
+    };
+}
+
+@{
+    var todaysDate = DateTime.Now.ToShortDateString();
+}
+
+@{
+    //Fungerar inte för senare månader om året loopar
+    string ClosestBirthday()
+    {
+        Birthday chosenOne = null;
+        foreach (var b in birthdays)
+        {
+            bool skip = false;
+
+            if (chosenOne != null)
+            {
+                if (chosenOne.BirthDate.Month <= b.BirthDate.Month)
+                {
+                    if (chosenOne.BirthDate.Day <= b.BirthDate.Day)
+                    {
+                        skip = true;
+                    }
+                }
+            }
+
+            if (!skip && 
+                b.BirthDate.Month >= DateTime.Now.Month + 2)
+            {
+                if (b.BirthDate.Day >= DateTime.Now.Day)
+                {
+                    if (chosenOne != null)
+                    {
+                        if(chosenOne.BirthDate.Month <)
+                    }
+                    chosenOne = b;
+                }
+            }
+        }
+        return chosenOne.ToString();
+    }
+}
+
+@{
+    string ComingBirthday()
+    {
+        string closestBirthday = "No birthdays found within 2 months";
+        Birthday chosenOne = null;
+
+        foreach (var b in birthdays)
+        {
+            if (b.BirthDate.Month >= DateTime.Now.Month &&
+                b.BirthDate.Month <= DateTime.Now.Month + 2)
+            {
+
+            }
+        }
+
+        if (chosenOne != null)
+        {
+            closestBirthday = chosenOne.ToString();
+        }
+        return closestBirthday;
+    }
+}
+
+<body>
+<p>2022-03-09</p>
+<p>Kommande födelsedag: @ClosestBirthday()</p>
+<p>Dagens datum: @todaysDate</p>
+<p>Nästa Födelsedag inom två månader: @ComingBirthday()</p>
+</body>
