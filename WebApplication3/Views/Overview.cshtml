@@ -1,7 +1,4 @@
-﻿@using System.Globalization
-@using EmptyASPNETCore.Models
-@model int
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿
 
 @{
     int month = @Model;
@@ -40,3 +37,10 @@
     }
 }
 
+@section Style {
+    <style>
+        html{
+            background-color: #76c756;
+        }
+    </style>
+}

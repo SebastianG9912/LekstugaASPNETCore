@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("Style", required: false)
+</head>
+<body>
+<header>
+    Beautiful Web
+</header>
+<nav>
+    @RenderBody()
+</nav>
+<footer>
+    &copy;2022 Base
+</footer>
+
+@RenderSection("Scripts", required: false)
+</body>
+</html>
