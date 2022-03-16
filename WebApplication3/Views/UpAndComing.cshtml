@@ -1,12 +1,7 @@
-﻿
+﻿@inject BirthdayHandler _birthdayHandler
+
 @{
-    var birthdays = new List<Birthday>(){
-        new Birthday(new DateTime(1999, 04, 12), "Sebastian"), 
-        new Birthday(new DateTime(2000, 05, 10), "Oscar"), 
-        new Birthday(new DateTime(2000, 03, 10), "Carl"), 
-        new Birthday(new DateTime(1987, 03, 9), "Maria"), 
-        new Birthday(new DateTime(2010, 12, 30), "Simon")
-    };
+    var birthdays = _birthdayHandler.Birthdays;
 }
 
 @{

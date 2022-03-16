@@ -1,9 +1,11 @@
+using EmptyASPNETCore.Services;
 using Microsoft.VisualBasic;
 
 var builder = WebApplication.CreateBuilder(args);
 //fas 1 - konfigurering av webbapp
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<BirthdayHandler>();
 
 var app = builder.Build();
 //fas 2 - middleware pipelining
@@ -25,12 +27,16 @@ app.UseRouting();
 
 //mappning
 app.MapControllerRoute(
-    name: "default",
+    name: "snippet",
     pattern: "{controller=snippet}/{action=index}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Birthday}/{Overview}/{month}");
-//app.MapRazorPages();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=birthday}/{action=index}");
+
+app.MapRazorPages();
 //Behövs inte för MVC eller Razor Pages
 /*var endpoint = () => "Hemlig endpoint";
 app.MapGet("/", () => "Hello World!");

@@ -4,13 +4,14 @@ namespace EmptyASPNETCore.Models
 {
     public class Birthday
     {
+        public Birthday(){}
         public Birthday(DateTime birthDate, string name)
         {
             BirthDate = birthDate;
             Name = name;
         }
-        public DateTime BirthDate { get;}
-        public string Name { get;}
+        public DateTime BirthDate { get; set; }
+        public string Name { get; set; }
 
         public override string ToString()
         {
@@ -47,6 +48,14 @@ namespace EmptyASPNETCore.Models
 
                 default: return "Invalid month";
             }
+        }
+
+        public DateTime ThisYear(DateTime today)
+        {
+            return new DateTime(
+                DateTime.Today.Year,
+                BirthDate.Month,
+                BirthDate.Day);
         }
     }
 }
