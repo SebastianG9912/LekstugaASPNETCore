@@ -1,4 +1,5 @@
-﻿using Microsoft.Net.Http.Headers;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.Net.Http.Headers;
 
 namespace EmptyASPNETCore.Models
 {
@@ -10,6 +11,7 @@ namespace EmptyASPNETCore.Models
             BirthDate = birthDate;
             Name = name;
         }
+        [Key]public int Id { get; set; }
         public DateTime BirthDate { get; set; }
         public string Name { get; set; }
 

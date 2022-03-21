@@ -1,4 +1,5 @@
-﻿using EmptyASPNETCore.Models;
+﻿using EmptyASPNETCore.Data;
+using EmptyASPNETCore.Models;
 
 namespace EmptyASPNETCore.Services
 {
@@ -18,6 +19,9 @@ namespace EmptyASPNETCore.Services
                 new Birthday(new DateTime(1987, 03, 9), "Maria"),
                 new Birthday(new DateTime(2010, 12, 30), "Simon")
             };
+
+                /*using var ctx = new BirthdayDbContext();
+                Birthdays = ctx.Birthdays.ToList();*/
 
             // sortera så närmsta födelsedag är först
             Birthdays.Sort((birthdayA, birthdayB) =>

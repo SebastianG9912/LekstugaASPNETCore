@@ -1,4 +1,6 @@
+using EmptyASPNETCore.Data;
 using EmptyASPNETCore.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<BirthdayHandler>();
+
+var connectionString = "Server=(localdb)\\mssqllocaldb;Database=BirthdayApp";
+builder.Services.AddDbContext<BirthdayDbContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 //fas 2 - middleware pipelining
@@ -44,6 +52,18 @@ app.MapGet("/hemlig", () => endpoint);
 app.MapGet("/hemlig/mer", endpoint);
 app.MapGet("/namn/{name}", (string name) => $"Hej {name}!");
 app.MapGet("/welcome", () => "Hej och välkommen!");*/
+
+using (var scope = app.Services.CreateScope())
+{
+    var ctx = scope.ServiceProvider.GetRequiredService<BirthdayDbContext>();
+
+    //await ctx.Database.EnsureDeletedAsync();
+    //await ctx.Database.EnsureCreatedAsync();
+
+    Database db = new Database(ctx);
+    await db.RecreateAndSeed();
+
+}
 
 app.Run();
 //fas 3 - server startad
